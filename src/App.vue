@@ -1,26 +1,28 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <size-form @submit="createBoard" v-if="gameState == 'pending'" />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import SizeForm from "./components/templates/SizeForm.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    SizeForm,
+  },
+  data() {
+    return {
+      gameState: "pending",
+    };
+  },
+  methods: {
+    createBoard(width, height) {
+      console.log(width, height);
+      this.gameState = "play";
+    },
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
