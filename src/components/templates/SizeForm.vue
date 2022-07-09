@@ -1,22 +1,26 @@
 <template>
   <div>
-    <size-slider label="横" ref="width" :min="4" :max="50" :step="2" />
-    <size-slider label="縦" ref="height" :min="4" :max="50" :step="2" />
+    <h2>盤面の設定</h2>
+    <range-slider label="横" v-model="width" :min="4" :max="50" :step="2" />
+    <range-slider label="縦" v-model="height" :min="4" :max="50" :step="2" />
     <button @click="submit">決定</button>
   </div>
 </template>
 
 <script>
-import SizeSlider from "../parts/SizeSlider.vue";
+import RangeSlider from "../parts/RangeSlider.vue";
 
 export default {
-  components: { SizeSlider },
+  components: { RangeSlider },
+  data() {
+    return {
+      width: 4,
+      height: 4,
+    };
+  },
   methods: {
     submit() {
-      const width = this.$refs.width.value;
-      const height = this.$refs.height.value;
-
-      this.$emit("submit", width, height);
+      this.$emit("submit", this.width, this.height);
     },
   },
 };
